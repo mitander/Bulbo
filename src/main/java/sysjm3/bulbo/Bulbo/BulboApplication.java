@@ -5,12 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages= {"sysjm3.bulbo.Bulbo"})
+@ComponentScan(basePackages = {"sysjm3.bulbo.Bulbo"})
 public class BulboApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BulboApplication.class, args);
-		System.out.println("YAY");
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BulboApplication.class, args);
+    }
 
 }
