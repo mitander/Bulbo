@@ -5,9 +5,13 @@ body {
 .card {
 	max-width: 15vw;
 	margin: .5vw;
-	float: left;
+	vertical-align: middle;
+	display: inline-block;
 }
 
 footer {
 	clear: both;
+	position: fixed;
+	bottom: 0;
+	width: 100vw;
 }
