@@ -13,130 +13,59 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 
-  <title>Dash</title>
-  <!-- Custom styles for this template -->
-  <link href="css/dashboard.css" rel="stylesheet">
+<title>Dash</title>
+<!-- Custom styles for this template -->
+<link href="dashboard.css" rel="stylesheet">
 
 
 </head>
 <body>
-  <!-- Menybaren -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container"><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-      </ul>
-    </div>
-      <a class="navbar-brand" href="#">Bulbo</a>
+	<!-- Menybaren -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active"><a class="nav-link" href="#">Home
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Services</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Contact</a>
+					</li>
+				</ul>
+			</div>
+			<a class="navbar-brand" href="#">Bulbo</a>
 
-    </div>
-  </nav>
+		</div>
+	</nav>
+	</br>
+	</br>
+	</br>
+	<input type="button" value="add card" onclick="addCard()" />
+	</br>
+	<div class="container-fluid">
+		<div class="col-sm-6"></div>
+	</div>
 
-</br></br></br></br></br></br>
-  <div class="container">
+	<div class="container-fluid" id="cardContainer">
+	</div>
 
-
-    <!-- <header class="jumbotron my-4">
-      <h1 class="display-4">En Jumobotron som vi kanske inte behöver.</h1>
-
-    </header> -->
-<!-- Slänger in en massa cards här, vet ej hur vi ska göra med allt.-->
-<div class="card-columns">
-  <div class="card">
-    <img class="card-img-top" src=".../100px160/" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title that wraps to a new line</h5>
-      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    </div>
-  </div>
-  <div class="card p-3">
-    <blockquote class="blockquote mb-0 card-body">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-      <footer class="blockquote-footer">
-        <small class="text-muted">
-          Someone famous in <cite title="Source Title">Source Title</cite>
-        </small>
-      </footer>
-    </blockquote>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src=".../100px160/" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-  <div class="card bg-primary text-white text-center p-3">
-    <blockquote class="blockquote mb-0">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
-      <footer class="blockquote-footer">
-        <small>
-          Someone famous in <cite title="Source Title">Source Title</cite>
-        </small>
-      </footer>
-    </blockquote>
-  </div>
-  <div class="card text-center">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img" src=".../100px260/" alt="Card image">
-  </div>
-  <div class="card p-3 text-right">
-    <blockquote class="blockquote mb-0">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-      <footer class="blockquote-footer">
-        <small class="text-muted">
-          Someone famous in <cite title="Source Title">Source Title</cite>
-        </small>
-      </footer>
-    </blockquote>
-  </div>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-
-
-  <!-- Stänger Cardsen -->
-</div>
-<!-- Stänger contrainern -->
-  </div>
-
-  <footer class="py-3 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">En footer &copy; 2020</p>
-      </div>
-
-    </footer>
+	<footer class="py-3 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">En footer &copy; 2020</p>
+		</div>
+	</footer>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
+
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
 		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -145,6 +74,8 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
+
+	<script src="cardHandler.js"></script>
 </body>
 
 </html>
