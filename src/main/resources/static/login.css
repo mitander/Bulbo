@@ -1,0 +1,22 @@
+body {
+	margin: 0;
+}
+
+#container {
+	width: 100vw;
+	height: 50vh;
+}
+
+#container > div {
+	border: 1px solid #aaaaaa;
+	margin: 0.5vw;
+	float: left;
+}
+
+#login, #register {
+	padding: 1vw;
+}
+
+input {
+	margin-bottom: 1vh;
+}
