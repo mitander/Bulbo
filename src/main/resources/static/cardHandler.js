@@ -1,6 +1,6 @@
 
 
-function addCard() {
+function addCard(x) {
 	
 	var cardContainer = document.getElementById('cardContainer');
 	var divCard = document.createElement('div');
@@ -13,8 +13,11 @@ function addCard() {
 	titleH5.innerHTML = "temporary title";
 	var cardContentP = document.createElement('p');
 	cardContentP.setAttribute('class', 'card-text');
+	
+	if (!x)
 	cardContentP.innerHTML = makeid(Math.random()*200);
-
+	else cardContentP.innerHTML = x;
+ 
 	var timeStamp = document.createElement('p');
 	timeStamp.setAttribute('class', 'text-muted');
 	
@@ -28,6 +31,23 @@ function addCard() {
 	cardContainer.appendChild(divCard);
 	
 }
+
+function handlePaste (e) {
+    var clipboardData, pastedData;
+
+    // Stop data actually being pasted into div
+    e.stopPropagation();
+    e.preventDefault();
+
+    // Get pasted data via clipboard API
+    clipboardData = e.clipboardData || window.clipboardData;
+    pastedData = clipboardData.getData('Text');
+
+    // Do whatever with pasteddata
+    addCard(pastedData);
+}
+
+document.getElementById('editableDiv').addEventListener('paste', handlePaste);
 
 function makeid(length) {
 	   var result           = '';
