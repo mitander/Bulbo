@@ -13,7 +13,7 @@ function addCard() {
 	titleH5.innerHTML = "temporary title";
 	var cardContentP = document.createElement('p');
 	cardContentP.setAttribute('class', 'card-text');
-	cardContentP.innerHTML = "temporary content bla bla bla temporary content bla bla bla temporary content bla bla bla";
+	cardContentP.innerHTML = makeid(Math.random()*200);
 
 	var timeStamp = document.createElement('p');
 	timeStamp.setAttribute('class', 'text-muted');
@@ -28,3 +28,13 @@ function addCard() {
 	cardContainer.appendChild(divCard);
 	
 }
+
+function makeid(length) {
+	   var result           = '';
+	   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	   var charactersLength = characters.length;
+	   for ( var i = 0; i < length; i++ ) {
+	      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+	   }
+	   return result;
+	}
