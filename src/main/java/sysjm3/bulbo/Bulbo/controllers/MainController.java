@@ -12,6 +12,7 @@ public class MainController {
 	public ModelAndView firstPage() {
 		return new ModelAndView("login");
 	}
+	
 	@RequestMapping(value="/dash", method=RequestMethod.GET)
 	public String dash() {
 		return "dashboard";
