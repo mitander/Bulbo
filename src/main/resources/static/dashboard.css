@@ -18,6 +18,12 @@ body {
 	cursor: pointer; /* Add a pointer on hover */
 }
 
+#cardContainer {
+	border: 2px solid white;
+	width: 99vw;
+	min-height: inherit;
+}
+
 #inputValues {
 	width: 30vw;
 	height: 30vw;
@@ -26,6 +32,7 @@ body {
 	margin-top: 5vw;
 	padding: 1vw;
 }
+
 .card {
 	max-width: 15vw;
 	max-height: 30vw;
@@ -34,9 +41,19 @@ body {
 	display: inline-block;
 }
 
-footer {
-	clear: both;
-	position: fixed;
-	bottom: 0;
-	width: 100vw;
+.addBtn {
+	border-radius: 100%;
+	width: 3vw;
+	height: 3vw;
+	margin-left: 1vw;
+}
+
+.input-group {
+	padding-left: 1vw;	
+}
+
+.form-control {
+	height: 20vw;
+	resize: none;
+	padding-left: 1vw;	
 }
