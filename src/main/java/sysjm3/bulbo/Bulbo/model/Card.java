@@ -44,7 +44,7 @@ public class Card implements Serializable {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonBackReference
     @JoinColumn(name = "workspace_id", referencedColumnName = "ID", nullable = false)
     private Workspace workspace;
@@ -121,6 +121,15 @@ public class Card implements Serializable {
         this.workspace = workspace;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 13 * hash + (int) (this.id ^ (this.id >>> 32));
+        return hash;
+    }
+
+    
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

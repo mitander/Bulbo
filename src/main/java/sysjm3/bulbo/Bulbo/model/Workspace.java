@@ -99,6 +99,15 @@ public class Workspace implements Serializable {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + (int) (this.id ^ (this.id >>> 32));
+        return hash;
+    }
+
+    
+    
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
