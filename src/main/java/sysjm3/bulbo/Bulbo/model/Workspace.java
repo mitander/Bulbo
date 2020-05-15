@@ -1,23 +1,25 @@
 package sysjm3.bulbo.Bulbo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
+
 import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "workspaces")
 public class Workspace implements Serializable {
-
+	
     public Workspace() {
     }
     
@@ -26,9 +28,10 @@ public class Workspace implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @Column(name="id", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)
+    private UUID id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -37,11 +40,11 @@ public class Workspace implements Serializable {
             cascade = CascadeType.ALL)
     private List<Card> cards;
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -61,12 +64,12 @@ public class Workspace implements Serializable {
         this.cards = cards;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + (int) (this.id ^ (this.id >>> 32));
-        return hash;
-    }
+    //@Override
+    //public int hashCode() {
+    //    int hash = 7;
+    //    hash = 71 * hash + (int) (this.id ^ (this.id >>> 32));
+    //    return hash;
+    //}
 
     @Override
     public boolean equals(Object obj) {

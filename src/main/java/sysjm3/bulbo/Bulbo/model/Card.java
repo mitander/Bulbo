@@ -1,7 +1,8 @@
 package sysjm3.bulbo.Bulbo.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
+import java.util.UUID;
+
 import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
@@ -13,6 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "cards")
@@ -28,9 +33,10 @@ public class Card implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @Column(name="id", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)
+    private UUID id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -43,11 +49,11 @@ public class Card implements Serializable {
     @JoinColumn(name = "workspace_id", referencedColumnName = "ID", nullable = false)
     private Workspace workspace;
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -75,12 +81,13 @@ public class Card implements Serializable {
         this.workspace = workspace;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + (int) (this.id ^ (this.id >>> 32));
-        return hash;
-    }
+    
+    //@Override
+    //public int hashCode() {
+    //    int hash = 7;
+    //    hash = 29 * hash + (int) (this.id ^ (this.id >>> 32));
+    //    return hash;
+    //}
 
     @Override
     public boolean equals(Object obj) {
