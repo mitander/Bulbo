@@ -14,6 +14,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * Card entity object used for the database. This entity is in a table called
+ * cards and holds standard getters and setters. It also holds a many to one
+ * relationship with the entity Workspace.
+ *
+ */
 @Entity
 @Table(name = "cards")
 public class Card implements Serializable {
@@ -43,43 +49,76 @@ public class Card implements Serializable {
     @JoinColumn(name = "workspace_id", referencedColumnName = "ID", nullable = false)
     private Workspace workspace;
 
+    /**
+     * Getter for the field id
+     *
+     * @return long type value of the variable id
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     * Setter for the field id
+     *
+     * @param id long value to replace the current id value
+     */
     public void setId(long id) {
         this.id = id;
     }
 
+    /**
+     * Getter for the field name
+     *
+     * @return String type value of the variable name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Setter for the field name
+     *
+     * @param name String value to replace the current name value
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Getter for the field content
+     *
+     * @return String type value of the variable content
+     */
     public String getContent() {
         return content;
     }
 
+    /**
+     * Setter for the field content
+     *
+     * @param content String value to replace the current content value
+     */
     public void setContent(String content) {
         this.content = content;
     }
 
+    /**
+     * Getter for the field workspace
+     *
+     * @return Workspace type value of the variable workspace
+     */
     public Workspace getWorkspace() {
         return workspace;
     }
 
+    /**
+     * Setter for the field content
+     *
+     * @param workspace Workspace value to replace the current workspace value
+     */
     public void setWorkspace(Workspace workspace) {
         this.workspace = workspace;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + (int) (this.id ^ (this.id >>> 32));
-        return hash;
     }
 
     @Override

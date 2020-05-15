@@ -1,6 +1,5 @@
 package sysjm3.bulbo.Bulbo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -14,6 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * Workspace entity object used for the database. This entity is in a table 
+ * called workspaces and holds standard getters and setters.
+ * It also holds a one to many relationship with the entity Card.
+ * 
+ */
 @Entity
 @Table(name = "workspaces")
 public class Workspace implements Serializable {
@@ -37,35 +42,60 @@ public class Workspace implements Serializable {
             cascade = CascadeType.ALL)
     private List<Card> cards;
 
+    /**
+     * Getter for the field id
+     * 
+     * @return long type value of the variable id
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     * Setter for the field id
+     * 
+     * @param id long value to replace the current id value
+     */
     public void setId(long id) {
         this.id = id;
     }
 
+     /**
+     * Getter for the field name
+     * 
+     * @return String type value of the variable name
+     */
     public String getName() {
         return name;
     }
 
+     /**
+     * Setter for the field name
+     * 
+     * @param name String value to replace the current name value
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+     /**
+     * Getter for the field cards
+     * 
+     * @return List collection of the type Card which holds all 
+     * the Card relations
+     */
     public List<Card> getCards() {
         return cards;
     }
 
+    /**
+     * Setter for the field cards
+     * 
+     * @param cards List collection of the type Card which will replace 
+     * the current Card collection
+     */
     public void setCards(List<Card> cards) {
         this.cards = cards;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + (int) (this.id ^ (this.id >>> 32));
-        return hash;
     }
 
     @Override
