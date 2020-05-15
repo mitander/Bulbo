@@ -1,4 +1,4 @@
-package sysjm3.bulbo.Bulbo;
+package sysjm3.bulbo.Bulbo.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,7 @@ public class MainController {
 	}
 	@RequestMapping(value="/dash", method=RequestMethod.GET)
 	public String dash() {
-		return "dashboard.html";
+		return "dashboard";
 	}
 	
 }
