@@ -2,7 +2,6 @@ package sysjm3.bulbo.Bulbo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
