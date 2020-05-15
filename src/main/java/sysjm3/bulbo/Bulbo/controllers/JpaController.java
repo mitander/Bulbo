@@ -67,7 +67,7 @@ public class JpaController {
         return workspaceRepository.save(workspace);
     }
 
-    @DeleteMapping("/workspace")
+    @DeleteMapping("/workspaces")
     public void deleteWorkspace(@RequestBody Workspace workspace) {
         if (workspace != null) {
             workspaceRepository.delete(workspace);
