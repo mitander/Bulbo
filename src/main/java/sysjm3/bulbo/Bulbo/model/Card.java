@@ -1,17 +1,19 @@
 package sysjm3.bulbo.Bulbo.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.util.Objects;
 
 /**
  * Card entity object used for the database. This entity is in a table called
@@ -33,9 +35,10 @@ public class Card implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @Column(name = "id", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)
+    private UUID id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -51,18 +54,18 @@ public class Card implements Serializable {
     /**
      * Getter for the field id
      *
-     * @return long type value of the variable id
+     * @return UUID type value of the variable id
      */
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
     /**
      * Setter for the field id
      *
-     * @param id long value to replace the current id value
+     * @param id UUID value to replace the current id value
      */
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -122,13 +125,11 @@ public class Card implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 13 * hash + (int) (this.id ^ (this.id >>> 32));
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
-    
-    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
