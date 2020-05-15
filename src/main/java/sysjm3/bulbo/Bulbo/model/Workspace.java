@@ -1,7 +1,8 @@
 package sysjm3.bulbo.Bulbo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
@@ -34,7 +35,7 @@ public class Workspace implements Serializable {
     
     @OneToMany(mappedBy = "workspace", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    private Set<Card> cards;
+    private List<Card> cards;
 
     public long getId() {
         return id;
@@ -52,11 +53,11 @@ public class Workspace implements Serializable {
         this.name = name;
     }
 
-    public Set<Card> getCards() {
+    public List<Card> getCards() {
         return cards;
     }
 
-    public void setCards(Set<Card> cards) {
+    public void setCards(List<Card> cards) {
         this.cards = cards;
     }
 
