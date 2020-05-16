@@ -19,7 +19,7 @@ body {
 }
 
 #cardContainer {
-	border: 2px solid white;
+	border: 2px solid transparent;
 	width: 99vw;
 	min-height: inherit;
 }
@@ -34,11 +34,22 @@ body {
 }
 
 .card {
-	max-width: 15vw;
+	max-width: 18vw;
 	max-height: 30vw;
 	margin : .5vw;
 	vertical-align: middle;
 	display: inline-block;
+	border: 1px solid #dddddd;
+	background-color: #ffffff;
+	transition: border-left .5s, border-right 1.5s, border-bottom 1s, border-top 2s;
+}
+
+.card:hover {
+	border-left: 1px solid #34495e;
+	border-right: 1px solid #34495e;
+	border-bottom: 1px solid #34495e;
+	border-top: 1px solid #34495e;
+	cursor:pointer;
 }
 
 .addBtn {
@@ -56,4 +67,8 @@ body {
 	height: 20vw;
 	resize: none;
 	padding-left: 1vw;	
+}
+
+.inputError {
+	border: 1px solid red;
 }

@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * relationship with the entity Workspace.
  *
  */
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "cards")
 public class Card implements Serializable {

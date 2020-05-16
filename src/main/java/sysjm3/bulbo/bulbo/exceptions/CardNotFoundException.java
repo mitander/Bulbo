@@ -3,6 +3,7 @@ package sysjm3.bulbo.bulbo.exceptions;
 import java.util.UUID;
 import sysjm3.bulbo.bulbo.model.Workspace;
 
+@SuppressWarnings("serial")
 public class CardNotFoundException extends RuntimeException {
     
     public CardNotFoundException(UUID cardId) {
