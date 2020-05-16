@@ -49,36 +49,43 @@
 	</br>
 	<input type="button" class="addBtn" value="+" onclick="on()" />
 	</br>
+	
+	<!-- overlay visas när "addBtn" har tryckts -->
 	<div id="overlay">
+		<!-- inputValues är vårt ID för att visa formuläret vid "addBtn" event -->
 		<div id="inputValues">
 			<p>Input Values</p>
 			<input class="input-group input-group-lg" id="newCardTitle"
 				type="text" placeholder="Card Title" /> <br>
+			<!-- i vår "newCardContent" inputfält, skriv "loremx[antalord]". Exempel: loremx50
+			genererar 50 ord från lorem-ipsum. MAX 300-->
 			<textArea class="form-control" id="newCardContent" type="text"
 				placeholder="Card Content"></textArea>
-			<br> <input type="button" value="Add Card" onclick="addCard()" />
+			<br>
+			<input type="button" value="Add Card" onclick="addCard()" />
 			<input type="button" value="Close" onclick="off()" />
 		</div>
 	</div>
-	</div>
+	<!-- här läggs våra cards till -->
 	<div id="editableDiv">
 		<div class="container-fluid" id="cardContainer"></div>
-		<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-			crossorigin="anonymous"></script>
+	</div>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
 
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-			crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
 
-		<script src="cardHandler.js"></script>
+	<script src="cardHandler.js"></script>
 </body>
 
 </html>
