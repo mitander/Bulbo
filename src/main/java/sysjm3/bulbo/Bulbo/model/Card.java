@@ -21,6 +21,7 @@ import java.util.Objects;
  * relationship with the entity Workspace.
  *
  */
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "cards")
 public class Card implements Serializable {
