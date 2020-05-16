@@ -1,8 +1,9 @@
-package sysjm3.bulbo.Bulbo.model;
+package sysjm3.bulbo.bulbo.model;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -160,6 +161,33 @@ public class User implements Serializable {
         this.registerDate = date;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", username=" + username + ", name=" + name + ", email=" + email + ", password=" + password + ", registerDate=" + registerDate + "}";

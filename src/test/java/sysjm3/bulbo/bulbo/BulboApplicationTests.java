@@ -1,4 +1,4 @@
-package sysjm3.bulbo.Bulbo;
+package sysjm3.bulbo.bulbo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

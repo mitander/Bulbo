@@ -1,4 +1,4 @@
-package sysjm3.bulbo.Bulbo.model;
+package sysjm3.bulbo.bulbo.model;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.Objects;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Card entity object used for the database. This entity is in a table called
@@ -38,8 +39,8 @@ public class Card implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)
-    private UUID id;
+    @Column(name = "id", columnDefinition = "UUID", insertable = false, updatable = false, nullable = false)
+    private UUID UUID;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -47,27 +48,27 @@ public class Card implements Serializable {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JsonBackReference
-    @JoinColumn(name = "workspace_id", referencedColumnName = "ID", nullable = false)
+    @JoinColumn(name = "workspace_id", referencedColumnName = "id", nullable = false)
     private Workspace workspace;
 
     /**
-     * Getter for the field id
+     * Getter for the field UUID
      *
-     * @return UUID type value of the variable id
+     * @return UUID type value of the variable UUID
      */
-    public UUID getId() {
-        return id;
+    public UUID getUUID() {
+        return UUID;
     }
 
     /**
-     * Setter for the field id
+     * Setter for the field UUID
      *
-     * @param id UUID value to replace the current id value
+     * @param UUID UUID value to replace the current UUID value
      */
-    public void setId(UUID id) {
-        this.id = id;
+    public void setUUID(UUID UUID) {
+        this.UUID = UUID;
     }
 
     /**
@@ -127,7 +128,7 @@ public class Card implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + Objects.hashCode(this.UUID);
         return hash;
     }
 
@@ -143,7 +144,7 @@ public class Card implements Serializable {
             return false;
         }
         final Card other = (Card) obj;
-        if (this.id != other.id) {
+        if (this.UUID != other.UUID) {
             return false;
         }
         return true;
@@ -151,7 +152,7 @@ public class Card implements Serializable {
 
     @Override
     public String toString() {
-        return "Card{" + "id=" + id + ", name=" + name + ", content=" + content + ", workspace=" + workspace + '}';
+        return "Card{" + "id=" + UUID + ", name=" + name + ", content=" + content + ", workspace=" + workspace.hashCode() + '}';
     }
 
 }

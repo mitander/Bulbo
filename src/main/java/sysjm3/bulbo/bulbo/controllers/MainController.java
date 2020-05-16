@@ -1,4 +1,4 @@
-package sysjm3.bulbo.Bulbo.controllers;
+package sysjm3.bulbo.bulbo.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

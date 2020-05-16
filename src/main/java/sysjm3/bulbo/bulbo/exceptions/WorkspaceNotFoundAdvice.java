@@ -1,4 +1,4 @@
-package sysjm3.bulbo.Bulbo.exceptions;
+package sysjm3.bulbo.bulbo.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class CardNotFoundAdvice {
+public class WorkspaceNotFoundAdvice {
 
     @ResponseBody
-    @ExceptionHandler(CardNotFoundException.class)
+    @ExceptionHandler(WorkspaceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String cardNotFoundHandler(CardNotFoundException ex) {
+    public String workspaceNotFoundHandler(WorkspaceNotFoundException ex) {
         return ex.getMessage();
     }
 }

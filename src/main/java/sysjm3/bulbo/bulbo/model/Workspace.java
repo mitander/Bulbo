@@ -1,9 +1,10 @@
-package sysjm3.bulbo.Bulbo.model;
+package sysjm3.bulbo.bulbo.model;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Workspace entity object used for the database. This entity is in a table
@@ -32,36 +34,36 @@ public class Workspace implements Serializable {
     public Workspace(String name) {
         this.name = name;
     }
-
+    
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)
-    private UUID id;
+    @Column(name = "id", columnDefinition = "UUID", insertable = false, updatable = false, nullable = false)
+    private UUID UUID;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "workspace", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "workspace", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private List<Card> cards;
 
     /**
-     * Getter for the field id
+     * Getter for the field UUID
      *
-     * @return UUID type value of the variable id
+     * @return UUID type value of the variable UUID
      */
-    public UUID getId() {
-        return id;
+    public UUID getUUID() {
+        return UUID;
     }
 
     /**
-     * Setter for the field id
+     * Setter for the field UUID
      *
-     * @param id UUID value to replace the current id value
+     * @param UUID UUID value to replace the current UUID value
      */
-    public void setId(UUID id) {
-        this.id = id;
+    public void setUUID(UUID UUID) {
+        this.UUID = UUID;
     }
 
     /**
@@ -105,7 +107,7 @@ public class Workspace implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.UUID);
         return hash;
     }
 
@@ -121,15 +123,18 @@ public class Workspace implements Serializable {
             return false;
         }
         final Workspace other = (Workspace) obj;
-        if (this.id != other.id) {
+        if (this.UUID != other.UUID) {
             return false;
         }
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Workspace{" + "id=" + id + ", name=" + name + "}";
-    }
+@Override
+public String toString() {
+    return String.format("Workspace{ uuid=%s, name=%s, Cards=%s }",
+            UUID.toString(),
+            name,
+            cards.hashCode());
+}
 
 }
