@@ -1,10 +1,11 @@
-package sysjm3.bulbo.Bulbo.exceptions;
+package sysjm3.bulbo.bulbo.exceptions;
 
-import sysjm3.bulbo.Bulbo.model.Workspace;
+import java.util.UUID;
+import sysjm3.bulbo.bulbo.model.Workspace;
 
 public class CardNotFoundException extends RuntimeException {
     
-    public CardNotFoundException(Long cardId) {
+    public CardNotFoundException(UUID cardId) {
         super("Could not find card by id=" + cardId);
     }
     
