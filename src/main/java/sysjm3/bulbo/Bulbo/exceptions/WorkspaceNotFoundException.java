@@ -1,5 +1,6 @@
 package sysjm3.bulbo.Bulbo.exceptions;
 
+@SuppressWarnings("serial")
 public class WorkspaceNotFoundException extends RuntimeException {
     
     public WorkspaceNotFoundException(Long workspaceId) {
