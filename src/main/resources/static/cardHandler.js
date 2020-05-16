@@ -2,6 +2,7 @@
 //addCard är funktionen som kallas vid addCard-onclick-event
 //param: x = det i din clip-board om du har utfört ctrl-v
 function addCard(x) {
+	
 	//'referens' till vår cardContainer i HTML
 	var cardContainer = document.getElementById('cardContainer');
 	//skapa ett div-element
@@ -18,7 +19,11 @@ function addCard(x) {
 	//card-title är från bootstrap
 	titleH5.setAttribute('class', 'card-title');
 	//tilldela värdet från newCardTitle i HTML till kortets H5
-	titleH5.innerHTML = document.getElementById('newCardTitle').value;
+	if (document.getElementById('newCardTitle').value) {
+		titleH5.innerHTML = document.getElementById('newCardTitle').value;
+	} else {
+		return;
+	}
 	//skapa ett p-element
 	var cardContentP = document.createElement('p');
 	//card-text är från bootstrap
@@ -36,9 +41,11 @@ function addCard(x) {
 		}
 		else {
 			//annars tilldela newCardContent till kortets content
-			cardContentP.innerHTML = inputContent;
+			if (inputContent)
+				cardContentP.innerHTML = inputContent;
+			else return;
 		}
-	} else {
+	} else {		
 		//annars tilldela clipboard texten till kortets innehåll
 		cardContentP.innerHTML = x;
 	}
@@ -101,7 +108,8 @@ function handlePaste(e) {
 
 	//min kod
 	//skapa kort med clipboard
-	addCard(pastedData);
+	on();
+	document.getElementById('newCardContent').value = pastedData;
 }
 
 //anropas när addBtn klickas
