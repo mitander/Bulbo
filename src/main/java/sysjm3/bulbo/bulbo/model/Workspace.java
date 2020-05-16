@@ -44,7 +44,7 @@ public class Workspace implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "workspace", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "workspace", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private List<Card> cards;
 
@@ -134,9 +134,7 @@ public String toString() {
     return String.format("Workspace{ uuid=%s, name=%s, Cards=%s }",
             UUID.toString(),
             name,
-            cards.stream()
-                    .map(Object::toString)
-                    .collect(Collectors.joining(",")));
+            cards.hashCode());
 }
 
 }

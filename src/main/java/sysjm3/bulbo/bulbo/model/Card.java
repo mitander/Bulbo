@@ -48,7 +48,7 @@ public class Card implements Serializable {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JsonBackReference
     @JoinColumn(name = "workspace_id", referencedColumnName = "id", nullable = false)
     private Workspace workspace;
@@ -152,7 +152,7 @@ public class Card implements Serializable {
 
     @Override
     public String toString() {
-        return "Card{" + "id=" + UUID + ", name=" + name + ", content=" + content + ", workspace=" + workspace + '}';
+        return "Card{" + "id=" + UUID + ", name=" + name + ", content=" + content + ", workspace=" + workspace.hashCode() + '}';
     }
 
 }
