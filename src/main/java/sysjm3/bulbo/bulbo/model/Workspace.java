@@ -43,8 +43,7 @@ public class Workspace implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "workspace", fetch = FetchType.EAGER,
-            cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @OneToMany(mappedBy = "workspace", fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Card> cards;
 
     /**
