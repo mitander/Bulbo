@@ -26,7 +26,10 @@ public class CardService {
 
     public void deleteCard(Card card) {
         if (card != null) {
-            cardRepository.delete(card);
+        	Card foundCard = cardRepository.findByUUID(card.getUUID());
+        	System.out.println(foundCard.getUUID() + " : " + card.getUUID());
+        	cardRepository.deleteById(card.getUUID());
+            //cardRepository.delete(foundCard);
         }
     }
 
