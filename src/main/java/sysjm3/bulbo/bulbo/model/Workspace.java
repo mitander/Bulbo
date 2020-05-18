@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -38,14 +37,14 @@ public class Workspace implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "workspace_id", columnDefinition = "UUID", insertable = false, updatable = false, nullable = false)
+    @Column(name = "id", columnDefinition = "UUID", insertable = false, updatable = false, nullable = false)
     private UUID UUID;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(targetEntity = Card.class, mappedBy = "workspace", fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "workspace", fetch = FetchType.EAGER,
+            cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Card> cards;
 
     /**

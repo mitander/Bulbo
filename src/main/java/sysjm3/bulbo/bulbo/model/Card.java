@@ -8,13 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.Objects;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.Transient;
 
 /**
  * Card entity object used for the database. This entity is in a table called
@@ -50,7 +51,7 @@ public class Card implements Serializable {
 
     @ManyToOne(targetEntity = Workspace.class, fetch = FetchType.EAGER, optional = false)
     @JsonBackReference
-    @JoinColumn(name = "card_id", referencedColumnName = "workspace_id", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "workspace_id", nullable = false)
     private Workspace workspace;
 
     /**

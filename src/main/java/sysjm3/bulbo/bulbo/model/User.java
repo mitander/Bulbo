@@ -26,7 +26,7 @@ public class User implements Serializable {
 		this.username = username;
 	}
 	
-	@Id
+    @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)

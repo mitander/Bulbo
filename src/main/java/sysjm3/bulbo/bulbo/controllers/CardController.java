@@ -64,26 +64,26 @@ public class CardController {
      * GET mapping for /cards/{id} URL. Returns the tuple with the ID given 
      * as parameter
      * 
-     * @param cardUuid ID of the Card you want to view
+     * @param id ID of the Card you want to view
      * @return Query result in the form of JSON format representing the Card
      * that was fetched if it exists
      */
     @GetMapping("/cards/{id}")
-    public Card getCardById(@PathVariable UUID cardUuid) {
-        return cardService.findOne(cardUuid);
+    public Card getCardById(@PathVariable UUID id) {
+        return cardService.findOne(id);
     }
 
     /**
      * GET mapping for /cards?by=workspace URL. Will return all the cards 
      * that has the given parameter workspace object as a field value
      * 
-     * @param workspace Request body in the format of JSON representing 
+     * @param id Request body in the format of JSON representing 
      * the values of the Workspace object
      * @return Query results in the form of JSON format representing the cards
      * that was fetched
      */
-    @GetMapping("/cards?by=w")
-    public List<Card> getCardByWorkspace(@RequestBody Workspace workspace) {
-        return cardService.findByWorkspace(workspace);
+    @GetMapping("/cards/byw={id}")
+    public List<Card> getCardByWorkspace(@PathVariable UUID id) {
+        return cardService.findByWorkspace(id);
     }
 }
