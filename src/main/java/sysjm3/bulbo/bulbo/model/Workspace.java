@@ -38,13 +38,13 @@ public class Workspace implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", columnDefinition = "UUID", insertable = false, updatable = false, nullable = false)
+    @Column(name = "workspace_id", columnDefinition = "UUID", insertable = false, updatable = false, nullable = false)
     private UUID UUID;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "workspace", fetch = FetchType.EAGER,
+    @OneToMany(targetEntity = Card.class, mappedBy = "workspace", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private List<Card> cards;
 

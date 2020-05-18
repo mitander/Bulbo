@@ -39,7 +39,7 @@ public class Card implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", columnDefinition = "UUID", insertable = false, updatable = false, nullable = false)
+    @Column(name = "card_id", columnDefinition = "UUID", insertable = false, updatable = false, nullable = false)
     private UUID UUID;
 
     @Column(name = "name", nullable = false)
@@ -48,9 +48,9 @@ public class Card implements Serializable {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(targetEntity = Workspace.class, fetch = FetchType.EAGER, optional = false)
     @JsonBackReference
-    @JoinColumn(name = "workspace_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "card_id", referencedColumnName = "workspace_id", insertable = false, updatable = false, nullable = false)
     private Workspace workspace;
 
     /**

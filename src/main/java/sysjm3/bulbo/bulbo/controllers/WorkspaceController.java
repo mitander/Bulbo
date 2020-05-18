@@ -46,7 +46,7 @@ public class WorkspaceController {
      * Workspace that was just created
      */
     @PostMapping("/workspaces")
-    public Workspace createWorkspace(@RequestBody Workspace workspace) {
+    public Workspace saveWorkspace(@RequestBody Workspace workspace) {
         return workspaceService.saveWorkspace(workspace);
     }
 
