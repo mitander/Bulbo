@@ -54,19 +54,19 @@ public class WorkspaceController {
      * DELETE mapping for /workspaces URL. It should delete the Workspace 
      * given as parameter from the workspaces table
      * 
-     * @param workspace Request body in the format of JSON representing the 
+     * @param id Request body in the format of JSON representing the 
      * values for the Workspace object
      */
-    @DeleteMapping("/workspaces")
-    public void deleteWorkspace(@RequestBody Workspace workspace) {
-        if (workspace != null) {
-            workspaceService.deleteWorkspace(workspace);
+    @DeleteMapping("/workspaces/{id}")
+    public void deleteWorkspaceById(@PathVariable UUID id) {
+        if (id != null) {
+            workspaceService.deleteWorkspaceById(id);
         }
     }
 
      /**
      * GET mapping for /workspace/{id} URL. Returns the tuple with the ID given 
-     * as parameter
+     * as parameters
      * 
      * @param id ID of the Card you want to view
      * @return Query result in the form of JSON format representing the Card

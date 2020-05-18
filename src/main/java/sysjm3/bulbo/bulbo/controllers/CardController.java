@@ -52,12 +52,12 @@ public class CardController {
      * DELETE mapping for /cards URL. It should delete the Card given as 
      * parameter from the cards table
      * 
-     * @param card Request body in the format of JSON representing the values
+     * @param id Request body in the format of JSON representing the values
      * for the Card object
      */
-    @DeleteMapping("/cards")
-    public void deleteCard(@RequestBody Card card) {
-        cardService.deleteCard(card);
+    @DeleteMapping("/cards/del={id}")
+    public void deleteCard(@PathVariable UUID id) {
+        cardService.deleteCardById(id);
     }
 
     /**
@@ -82,7 +82,7 @@ public class CardController {
      * @return Query results in the form of JSON format representing the cards
      * that was fetched
      */
-    @GetMapping("/cards/byw={id}")
+    @GetMapping("/cards/w={id}")
     public List<Card> getCardByWorkspace(@PathVariable UUID id) {
         return cardService.findByWorkspace(id);
     }

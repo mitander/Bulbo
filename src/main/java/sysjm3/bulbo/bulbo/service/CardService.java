@@ -24,12 +24,9 @@ public class CardService {
         return (card != null) ? cardRepository.saveAndFlush(card) : null;
     }
 
-    public void deleteCard(Card card) {
-        if (card != null) {
-        	Card foundCard = cardRepository.findByUUID(card.getUUID());
-        	System.out.println(foundCard.getUUID() + " : " + card.getUUID());
-        	cardRepository.deleteById(card.getUUID());
-            //cardRepository.delete(foundCard);
+    public void deleteCardById(UUID id) {
+        if (id != null) {
+            cardRepository.deleteById(id);
         }
     }
 
