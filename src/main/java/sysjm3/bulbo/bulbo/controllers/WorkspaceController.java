@@ -66,7 +66,7 @@ public class WorkspaceController {
 
      /**
      * GET mapping for /workspace/{id} URL. Returns the tuple with the ID given 
-     * as parameter
+     * as parameters
      * 
      * @param id ID of the Card you want to view
      * @return Query result in the form of JSON format representing the Card
