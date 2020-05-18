@@ -48,7 +48,5 @@ public class PreDatabaseFiller implements CommandLineRunner {
         cardService.findAll().forEach((card) -> {
             logger.info("{}", card);
         });
-        
     }
-
 }

@@ -46,7 +46,7 @@ public class WorkspaceController {
      * Workspace that was just created
      */
     @PostMapping("/workspaces")
-    public Workspace createWorkspace(@RequestBody Workspace workspace) {
+    public Workspace saveWorkspace(@RequestBody Workspace workspace) {
         return workspaceService.saveWorkspace(workspace);
     }
 
@@ -68,13 +68,13 @@ public class WorkspaceController {
      * GET mapping for /workspace/{id} URL. Returns the tuple with the ID given 
      * as parameter
      * 
-     * @param workspaceUuid ID of the Card you want to view
+     * @param id ID of the Card you want to view
      * @return Query result in the form of JSON format representing the Card
      * that was fetched if it exists
      */
-    @GetMapping("/workspace/{id}")
-    public Workspace getWorkspaceById(@PathVariable UUID workspaceUuid) {
-        return workspaceService.findOne(workspaceUuid);
+    @GetMapping("/workspaces/{id}")
+    public Workspace getWorkspaceById(@PathVariable UUID id) {
+        return workspaceService.findOne(id);
     }
     
 }

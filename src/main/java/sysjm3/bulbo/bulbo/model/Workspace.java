@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -45,7 +44,7 @@ public class Workspace implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "workspace", fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
+            cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Card> cards;
 
     /**
