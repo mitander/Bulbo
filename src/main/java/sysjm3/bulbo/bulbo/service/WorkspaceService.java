@@ -24,9 +24,9 @@ public class WorkspaceService {
                 workspaceRepository.saveAndFlush(workspace) : null;
     }
 
-    public void deleteWorkspace(Workspace workspace) {
-        if (workspace != null) {
-            workspaceRepository.delete(workspace);
+    public void deleteWorkspaceById(UUID id) {
+        if (id != null) {
+            workspaceRepository.deleteById(id);
         }
     }
 

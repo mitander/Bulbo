@@ -24,9 +24,9 @@ public class CardService {
         return (card != null) ? cardRepository.saveAndFlush(card) : null;
     }
 
-    public void deleteCard(Card card) {
-        if (card != null) {
-            cardRepository.delete(card);
+    public void deleteCardById(UUID id) {
+        if (id != null) {
+            cardRepository.deleteById(id);
         }
     }
 
