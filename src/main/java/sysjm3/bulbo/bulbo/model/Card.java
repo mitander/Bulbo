@@ -153,7 +153,7 @@ public class Card implements Serializable {
 
     @Override
     public String toString() {
-        return "Card{" + "id=" + UUID + ", name=" + name + ", content=" + content + ", workspace=" + workspace.hashCode() + '}';
+        return "Card{" + "id=" + UUID + ", name=" + name + ", content=" + content + ", workspace=" + workspace.getUUID() + '}';
     }
 
 }
