@@ -30,7 +30,7 @@ public class UserController {
     }
     
     /**
-     * POST mapping for /users URL. Essentially creates a new 
+     * POST mapping for /user URL. Essentially creates a new 
      * User object and inserts it in the table users
      *
      * @param user Request body in the format of JSON 
@@ -38,19 +38,19 @@ public class UserController {
      * @return Query result in the form of JSON format representing the 
      * User that was just created
      */
-    @PostMapping("/users")
+    @PostMapping("/user")
     public User saveUser (@RequestBody User user) {
         return userService.saveUser(user);
     }
 
     /**
-     * DELETE mapping for /users URL. It should delete the User 
+     * DELETE mapping for /user URL. It should delete the User 
      * given as parameter from the users table
      * 
      * @param id Request body in the format of JSON representing the 
      * values for the User object
      */
-    @DeleteMapping("/users")
+    @DeleteMapping("/user")
     public void deleteWorkspaceById(@RequestParam UUID id) {
         if (id != null) {
             userService.deleteUserById(id);
@@ -58,14 +58,14 @@ public class UserController {
     }
 
      /**
-     * GET mapping for /users URL. Returns the tuple with the ID given 
+     * GET mapping for /user URL. Returns the tuple with the ID given 
      * as parameters
      * 
      * @param id ID of the Card you want to view
      * @return Query result in the form of JSON format representing the Card
      * that was fetched if it exists
      */
-    @GetMapping("/users")
+    @GetMapping("/user")
     public User getWorkspaceById(@RequestParam UUID id) {
         return userService.findOne(id);
     }    

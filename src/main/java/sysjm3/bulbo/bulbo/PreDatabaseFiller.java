@@ -42,7 +42,7 @@ public class PreDatabaseFiller implements CommandLineRunner {
         Workspace ws2 = new Workspace("_Workspace2");
         workspaceService.saveWorkspace(ws1);
         workspaceService.saveWorkspace(ws2);
-
+        
         // Create 5 Cards and save them
         cardService.saveCard(new Card("_Card1", "_Card1-content", ws1));
         cardService.saveCard(new Card("_Card2", "_Card2-content", ws1));

@@ -34,14 +34,14 @@ public class User implements Serializable {
         this.surname = surname;
         this.email = email;
         this.password = password;
-        //this.registerDate = registerDate;
+        this.registerDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     }
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)
-    private UUID id;
+    @Column(name = "user_id", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)
+    private UUID UUID;
 
     @Column(name = "username", nullable = false)
     private String username;
@@ -58,31 +58,29 @@ public class User implements Serializable {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "registerDate", nullable = false)
-    private Date registerDate;
+    @Column(name = "registerDate", updatable = false, nullable = false)
+    private String registerDate;
 
-    @ManyToMany(targetEntity = Workspace.class, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Workspace.class)
     @Column(name = "workspaces", nullable = true)
     private List<Workspace> workspaces;
 
     /**
-     * Getter for the field id
+     * Getter for the field UUID
      *
-     * @return UUID type value of the variable id
+     * @return UUID type value of the variable UUID
      */
-    public UUID getId() {
-        return id;
+    public UUID getUUID() {
+        return UUID;
     }
 
     /**
-     * Setter for the field id
+     * Setter for the field UUID
      *
-     * @param id UUID value to replace the current id value
+     * @param UUID UUID value to replace the current UUID value
      */
-    public void setId(UUID id) {
-        this.id = id;
+    public void setUUID(UUID UUID) {
+        this.UUID = UUID;
     }
 
     /**
@@ -181,8 +179,7 @@ public class User implements Serializable {
      * @return String type value of the variable registerDate
      */
     public String getRegisterDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        return formatter.format(registerDate);
+        return registerDate;
     }
 
     /**
@@ -190,7 +187,7 @@ public class User implements Serializable {
      *
      * @param registerDate value to replace the current registerDate value
      */
-    public void setRegisterDate(Date registerDate) {
+    public void setRegisterDate(String registerDate) {
         this.registerDate = registerDate;
     }
 
@@ -215,7 +212,7 @@ public class User implements Serializable {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.UUID);
         return hash;
     }
 
@@ -231,12 +228,12 @@ public class User implements Serializable {
             return false;
         }
         final User other = (User) obj;
-        return Objects.equals(this.id, other.id);
+        return Objects.equals(this.UUID, other.UUID);
     }
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", username=" + username
+        return "User{" + "id=" + UUID + ", username=" + username
                 + ", forename=" + forename + ", surname=" + surname
                 + ", email=" + email + ", password=" + password
                 + ", registerDate=" + registerDate

@@ -13,9 +13,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
-import javax.persistence.Transient;
 
 /**
  * Card entity object used for the database. This entity is in a table called
