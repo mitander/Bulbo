@@ -1,6 +1,9 @@
 package sysjm3.bulbo.bulbo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -10,7 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
@@ -27,16 +31,19 @@ import org.hibernate.annotations.GenericGenerator;
 public class Workspace implements Serializable {
 
     public Workspace() {
+        this.created = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     }
 
-    public Workspace(String name) {
+    public Workspace(String name, User user) {
         this.name = name;
+        this.user = user;
+        this.created = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     }
     
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", columnDefinition = "UUID", insertable = false, updatable = false, nullable = false)
+    @Column(name = "workspace_id", columnDefinition = "UUID", insertable = false, updatable = false, nullable = false)
     private UUID UUID;
 
     @Column(name = "name", nullable = false)
@@ -45,9 +52,14 @@ public class Workspace implements Serializable {
     @OneToMany(mappedBy = "workspace", fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Card> cards;
     
-    @ManyToMany(targetEntity = User.class)
-    private List<User> users;
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER, optional = false)
+    @JsonBackReference
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
+    @Column(name = "created", updatable = false)
+    private final String created;
+    
     /**
      * Getter for the field UUID
      *
@@ -104,24 +116,27 @@ public class Workspace implements Serializable {
         this.cards = cards;
     }
 
-        /**
-     * Getter for the field users
+    /**
+     * Getter for the field user
      *
-     * @return List collection of the type User which holds all the User
-     * relations
+     * @return User entity
      */
-    public List<User> getUsers() {
-        return users;
+    public User getUsers() {
+        return user;
     }
 
-        /**
+    /**
      * Setter for the field users
      *
-     * @param users List collection of the type User which will replace the
-     * current User collection
+     * @param user User entity which will replace the current User
      */
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUsers(User user) {
+        this.user = user;
+    }
+    
+
+    public String getCreated() {
+        return created;
     }
     
     @Override
@@ -148,7 +163,7 @@ public class Workspace implements Serializable {
 
     @Override
     public String toString() {
-        return "Workspace{" + "UUID=" + UUID + ", name=" + name + ", cards=" + cards + ", users=" + users + '}';
+        return "Workspace{" + "UUID=" + UUID + ", name=" + name + ", cards=" + cards + '}';
     }
 
 }

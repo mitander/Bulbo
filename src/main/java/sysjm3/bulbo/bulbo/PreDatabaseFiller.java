@@ -1,5 +1,7 @@
 package sysjm3.bulbo.bulbo;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +40,8 @@ public class PreDatabaseFiller implements CommandLineRunner {
         userService.saveUser(user1);
         
         // Create 2 workspaces and save them
-        Workspace ws1 = new Workspace("_Workspace1");
-        Workspace ws2 = new Workspace("_Workspace2");
+        Workspace ws1 = new Workspace("_Workspace1", user1);
+        Workspace ws2 = new Workspace("_Workspace2", user1);
         workspaceService.saveWorkspace(ws1);
         workspaceService.saveWorkspace(ws2);
         

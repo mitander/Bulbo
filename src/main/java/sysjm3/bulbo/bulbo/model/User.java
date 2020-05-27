@@ -1,5 +1,6 @@
 package sysjm3.bulbo.bulbo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,13 +13,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @SuppressWarnings("serial")
 @Entity
@@ -26,6 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class User implements Serializable {
 
     public User() {
+        this.registerDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     }
 
     public User(String username, String forename, String surname, String email, String password) {
@@ -40,7 +39,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "user_id", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)
+    @Column(name = "user_id", columnDefinition = "UUID", insertable = false, updatable = false, nullable = false)
     private UUID UUID;
 
     @Column(name = "username", nullable = false)
@@ -59,10 +58,10 @@ public class User implements Serializable {
     private String password;
 
     @Column(name = "registerDate", updatable = false, nullable = false)
-    private String registerDate;
+    private final String registerDate;
 
-    @ManyToMany(targetEntity = Workspace.class)
-    @Column(name = "workspaces", nullable = true)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true)
+    @JsonBackReference
     private List<Workspace> workspaces;
 
     /**
@@ -180,15 +179,6 @@ public class User implements Serializable {
      */
     public String getRegisterDate() {
         return registerDate;
-    }
-
-    /**
-     * Setter for the field registerDate
-     *
-     * @param registerDate value to replace the current registerDate value
-     */
-    public void setRegisterDate(String registerDate) {
-        this.registerDate = registerDate;
     }
 
     /**

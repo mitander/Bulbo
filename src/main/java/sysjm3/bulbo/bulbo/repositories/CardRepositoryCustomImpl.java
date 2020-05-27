@@ -25,7 +25,6 @@ public class CardRepositoryCustomImpl implements CardRepositoryCustom {
     @Autowired
     private WorkspaceService workspaceService;
     
-    // constructor-based injection
     public CardRepositoryCustomImpl(
         CardRepositoryBasic cardRepositoryBasic)
     {

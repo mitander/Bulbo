@@ -16,9 +16,9 @@ import sysjm3.bulbo.bulbo.service.UserService;
 public class UserController {
     
     @Autowired
-    UserService userService;
+    private UserService userService;
     
-        /**
+    /**
      * GET mapping for all users in the user table at 
      * the /workspaces URL
      *
@@ -51,7 +51,7 @@ public class UserController {
      * values for the User object
      */
     @DeleteMapping("/user")
-    public void deleteWorkspaceById(@RequestParam UUID id) {
+    public void deleteUserById(@RequestParam UUID id) {
         if (id != null) {
             userService.deleteUserById(id);
         }
@@ -66,7 +66,7 @@ public class UserController {
      * that was fetched if it exists
      */
     @GetMapping("/user")
-    public User getWorkspaceById(@RequestParam UUID id) {
+    public User getUserById(@RequestParam UUID id) {
         return userService.findOne(id);
     }    
     
