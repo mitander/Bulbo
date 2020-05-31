@@ -1,108 +1,141 @@
 package sysjm3.bulbo.bulbo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @SuppressWarnings("serial")
+@Entity
+@Table(name="users")
 public class User implements Serializable {
-	
 
-	public User() {
-	}
-	
-	public User(String username) {
-		this.username = username;
-	}
-	
+    public User() {
+        this.registerDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    }
+
+    public User(String username, String forename, String surname, String email, String password) {
+        this.username = username;
+        this.forename = forename;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.registerDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    }
+
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)
-    private UUID id;
+    @Column(name = "user_id", columnDefinition = "UUID", insertable = false, updatable = false, nullable = false)
+    private UUID UUID;
 
     @Column(name = "username", nullable = false)
     private String username;
-    
-    @Column(name = "name", nullable = false)
-    private String name;
+
+    @Column(name = "forename", nullable = true)
+    private String forename;
+
+    @Column(name = "surname", nullable = true)
+    private String surname;
 
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "pass", nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "registerDate", nullable = false)
-    private Date registerDate;
-    
+    @Column(name = "registerDate", updatable = false, nullable = false)
+    private final String registerDate;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true)
+    @JsonBackReference
+    private List<Workspace> workspaces;
+
     /**
-     * Getter for the field id
+     * Getter for the field UUID
      *
-     * @return UUID type value of the variable id
+     * @return UUID type value of the variable UUID
      */
-    public UUID getId() {
-        return id;
+    public UUID getUUID() {
+        return UUID;
     }
 
     /**
-     * Setter for the field id
+     * Setter for the field UUID
      *
-     * @param id UUID value to replace the current id value
+     * @param UUID UUID value to replace the current UUID value
      */
-    public void setId(UUID id) {
-        this.id = id;
+    public void setUUID(UUID UUID) {
+        this.UUID = UUID;
     }
-    
+
     /**
      * Getter for the field username
      *
      * @return String type value of the variable username
      */
-    public String getUserName() {
+    public String getUsername() {
         return username;
     }
 
     /**
      * Setter for the field username
      *
-     * @param String username value to replace the current username value
+     * @param username value to replace the current username value
      */
-    public void setUserName(String username) {
+    public void setUsername(String username) {
         this.username = username;
-    }
-    
-    /**
-     * Getter for the field name
-     *
-     * @return String type value of the variable name
-     */
-    public String getName() {
-        return name;
     }
 
     /**
-     * Setter for the field name
+     * Getter for the field forename
      *
-     * @param String name value to replace the current name value
+     * @return String type value of the variable forename
      */
-    public void setName(String name) {
-        this.name = name;
+    public String getForename() {
+        return forename;
     }
-    
+
+    /**
+     * Setter for the field forename
+     *
+     * @param forename value to replace the current forename value
+     */
+    public void setForename(String forename) {
+        this.forename = forename;
+    }
+
+    /**
+     * Getter for the field surname
+     *
+     * @return String type value of the variable surname
+     */
+    public String getSurname() {
+        return surname;
+    }
+
+    /**
+     * Setter for the field surname
+     *
+     * @param surname value to replace the current surname value
+     */
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     /**
      * Getter for the field email
      *
@@ -115,15 +148,14 @@ public class User implements Serializable {
     /**
      * Setter for the field email
      *
-     * @param String value to replace the current email value
+     * @param email value to replace the current email value
      */
     public void setEmail(String email) {
         this.email = email;
     }
 
     /**
-     * TODO: Encrypt password
-     * Getter for the field password
+     * TODO: Encrypt password Getter for the field password
      *
      * @return String type value of the variable password
      */
@@ -132,39 +164,45 @@ public class User implements Serializable {
     }
 
     /**
-     * TODO: Encrypt password
-     * Setter for the field password
+     * TODO: Encrypt password Setter for the field password
      *
-     * @param String value to replace the current password value
+     * @param password value to replace the current password value
      */
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     /**
      * Getter for the field registerDate
      *
      * @return String type value of the variable registerDate
      */
     public String getRegisterDate() {
-    	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-    	return formatter.format(registerDate);
+        return registerDate;
     }
 
     /**
-     * Setter for the field name
+     * Getter for the field workspaces
      *
-     * @param String value to replace the current registerDate value
+     * @return List collection of type Workspace
      */
-    public void setRegisterDate() {
-    	Date date = new Date();
-        this.registerDate = date;
+    public List<Workspace> getWorkspaces() {
+        return workspaces;
+    }
+
+    /**
+     * Setter for the field workspaces
+     *
+     * @param workspaces value to replace the current workspaces value
+     */
+    public void setWorkspaces(List<Workspace> workspaces) {
+        this.workspaces = workspaces;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.UUID);
         return hash;
     }
 
@@ -180,16 +218,16 @@ public class User implements Serializable {
             return false;
         }
         final User other = (User) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.UUID, other.UUID);
     }
 
-    
-    
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", username=" + username + ", name=" + name + ", email=" + email + ", password=" + password + ", registerDate=" + registerDate + "}";
+        return "User{" + "id=" + UUID + ", username=" + username
+                + ", forename=" + forename + ", surname=" + surname
+                + ", email=" + email + ", password=" + password
+                + ", registerDate=" + registerDate
+                + ", workspaces=" + workspaces + '}';
     }
+
 }

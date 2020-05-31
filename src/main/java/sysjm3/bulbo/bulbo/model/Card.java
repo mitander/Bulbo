@@ -12,10 +12,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
-import javax.persistence.Transient;
 
 /**
  * Card entity object used for the database. This entity is in a table called
@@ -29,12 +29,14 @@ import javax.persistence.Transient;
 public class Card implements Serializable {
 
     public Card() {
+        this.created = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     }
 
     public Card(String name, String content, Workspace workspace) {
         this.name = name;
         this.content = content;
         this.workspace = workspace;
+        this.created = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     }
 
     @Id
@@ -54,6 +56,9 @@ public class Card implements Serializable {
     @JoinColumn(name = "workspace_id", nullable = false)
     private Workspace workspace;
 
+    @Column(name = "created", updatable = false)
+    private final String created;
+    
     /**
      * Getter for the field UUID
      *
@@ -126,6 +131,10 @@ public class Card implements Serializable {
         this.workspace = workspace;
     }
 
+    public String getCreated() {
+        return created;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -145,10 +154,7 @@ public class Card implements Serializable {
             return false;
         }
         final Card other = (Card) obj;
-        if (this.UUID != other.UUID) {
-            return false;
-        }
-        return true;
+        return this.UUID == other.UUID;
     }
 
     @Override
