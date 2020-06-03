@@ -15,7 +15,7 @@
 
 <title>Dash</title>
 <!-- Custom styles for this template -->
-<link href="dashboard.css" rel="stylesheet">
+<link href="style/dashboard.css" rel="stylesheet">
 
 
 </head>
@@ -47,7 +47,7 @@
 	</br>
 	</br>
 	</br>
-	<input type="button" class="addBtn" value="+" onclick="on()" />
+	<input type="button" id="addNewCard" class="addBtn" value="+"/>
 	</br>
 	
 	<!-- overlay visas när "addBtn" har tryckts -->
@@ -62,8 +62,8 @@
 			<textArea class="form-control" id="newCardContent" type="text"
 				placeholder="Card Content"></textArea>
 			<br>
-			<input type="button" value="Add Card" onclick="addCard()" />
-			<input type="button" value="Close" onclick="off()" />
+			<input type="button" value="Add Card" id="confirmNewCard" />
+			<input type="button" value="Close" id="declineNewCard" />
 		</div>
 	</div>
 	<!-- här läggs våra cards till -->
@@ -85,7 +85,8 @@
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
 
-	<script src="cardHandler.js"></script>
+	<script src="script/cardHandler.js"></script>
+	<script src="script/utilities.js"></script>
 </body>
 
 </html>

@@ -34,14 +34,24 @@ body {
 }
 
 .card {
-	max-width: 18vw;
-	max-height: 30vw;
+	width: 18vw;
+	height: 25vh;
 	margin : .5vw;
 	vertical-align: middle;
 	display: inline-block;
 	border: 1px solid #dddddd;
-	background-color: #ffffff;
-	transition: border-left .5s, border-right 1.5s, border-bottom 1s, border-top 2s;
+	background-color: #fcfcfc;
+	transition: border-left .5s, border-right 1.5s, border-bottom 1s, border-top 2s, background-color .5s;	
+}
+
+.cardText {
+	white-space: pre-line;
+}
+
+.text-muted {
+  position: absolute;
+  bottom: .5vw;
+  right: 1vw;
 }
 
 .card:hover {
@@ -49,7 +59,8 @@ body {
 	border-right: 1px solid #34495e;
 	border-bottom: 1px solid #34495e;
 	border-top: 1px solid #34495e;
-	cursor:pointer;
+	background-color: #ffffff;
+	cursor: pointer;
 }
 
 .addBtn {
